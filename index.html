@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>
+      Magic Door Opener
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="manifest.json" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        text-align: center;
+      }
+      span {
+        display: inline-block;
+        width: 50vw;
+        max-width: 100vw;
+        height: 50vw;
+        max-height: 100vh;
+        line-height: 50vw;
+        color: white;
+        background: red;
+        border-radius: 10vw;
+      }
+      span[data-open] {
+        background: green;
+      }
+      @media (orientation: portrait) {
+        span {
+          position: relative;
+          top: 25vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <span>Open Sesame!</span>
+
+    <script>
+      var button = document.querySelector('span');
+      
+      button.addEventListener('click', function() {
+        button.setAttribute('data-open', '');
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('load', function() {
+          button.removeAttribute('data-open');
+        });
+        xhr.open('GET', '/open');
+        xhr.send();
+      });
+    </script>
+  </body>
+</html>
