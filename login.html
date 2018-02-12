@@ -41,30 +41,23 @@
     </style>
   </head>
   <body>
-    <span>Open Sesame!</span>
+    <form method="post" action="/auth">
+      <input name="password" type="password" required />
+      <input type="submit">
+    </form>
 
     <script>
-      var evtDw = 'ontouchstart' in document.body ? 'touchstart' : 'mousedown';
-      var evtUp = 'ontouchend' in document.body ? 'touchend' : 'mouseup';
-
-      var button = document.querySelector('span');
+/*
+      var form = document.querySelector('form');
       
-      button.addEventListener(evtDw, function() {
-        button.setAttribute('data-open', '');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/start');
-        xhr.send();
-      });
-
-      button.addEventListener(evtUp, function() {
-        var xhr = new XMLHttpRequest();
-        xhr.addEventListener('load', function() {
-          button.removeAttribute('data-open');
-        });
-        xhr.open('GET', '/stop');
-        xhr.send();
-      });
+        xhr.open('POST', '/auth', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('password='+document.querySelector('input[type="password"]').value);
+      });*/
     </script>
   </body>
 </html>
